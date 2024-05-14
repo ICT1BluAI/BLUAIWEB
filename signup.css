@@ -1,0 +1,118 @@
+#blueprint {
+    color: #C2CEFF;
+    font-size: 36px;
+    font-family: Poppins;
+    font-weight: 700;
+    word-wrap: break-word;
+}
+
+#budgeting-tool {
+    color: #7D94F7;
+    font-size: 16px;
+    font-family: Poppins;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.platform,
+.services,
+.team,
+.contact {
+    color: #C3DFEA;
+    font-size: 16px;
+    font-family: Poppins;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+#log-in {
+    color: #C3DFEA;
+    font-size: 16px;
+    font-family: Poppins;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+#sign-up {
+    color: black;
+    font-size: 16px;
+    font-family: Poppins;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.br {
+    color: white;
+    font-size: 12px;
+    font-family: Inter;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+#email {
+    color: black;
+    font-size: 16px;
+    font-family: Poppins;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+#sign-up-text {
+    color: white;
+    font-size: 16px;
+    font-family: Inter;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.terms {
+    color: black;
+    font-size: 10px;
+    font-family: Poppins;
+    font-weight: 300;
+    word-wrap: break-word;
+}
+
+#blu-ai {
+    color: white;
+    font-size: 22px;
+    font-family: Agrandir;
+    font-weight: 300;
+    word-wrap: break-word;
+}
+
+#contact-us {
+    color: black;
+    font-size: 25px;
+    font-family: Inter;
+    font-weight: 700;
+    word-wrap: break-word;
+}
+
+#admin-email {
+    color: black;
+    font-size: 25px;
+    font-family: Inter;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+#sign-up-blu-ai {
+    color: black;
+    font-size: 20px;
+    font-family: Poppins;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+body {
+    overflow-x: hidden; 
+    font-family: 'Poppins-Bold', sans-serif;
+}
+
+@font-face {
+    font-family: 'Poppins-Bold';
+    src: url('website/Poppins-Bold.woff2') format('woff2'),
+         url('website/Poppins-Bold.woff') format('woff');
+        
+}

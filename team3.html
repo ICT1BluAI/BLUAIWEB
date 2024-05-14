@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="Team-1.css">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <link rel="stylesheet" href="Team-2.css">
+  <title>Blu.AI Team</title>
+</head>
+
+<style>
+    body {
+    margin: 0;
+    padding: 200;
+    font-family: 'Poppins-Bold', sans-serif;
+    height: 50px;
+  }
+
+  @font-face {
+    font-family: 'Poppins-Bold';
+    src: url('website/Poppins-Bold.woff2') format('woff2'),
+         url('website/Poppins-Bold.woff') format('woff');
+}
+
+
+
+  #team-scroll-container {
+    width: 100%;
+    height: calc(230vh - 300px);
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    background: rgb(201, 210, 236);
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    bottom: 100px; 
+  }
+
+  #team-scroll-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .team-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content; 
+    margin-top: 7vw; 
+  }
+
+  .team-member {
+    position: relative;
+    width: 345px;
+    height: 400px;
+    background-position: center;
+    background-size: cover;
+    margin-right: 45px;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease; 
+  }
+
+  .team-member:hover {
+    transform: scale(1.1); 
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    opacity: 0;
+    transition: opacity 0.3s ease; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .team-member:hover .overlay {
+    opacity: 1; 
+  }
+
+  .team-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 153px;
+    text-align: center;
+    color: #000728;
+    font-size: 40px;
+    font-family: Poppins;
+    font-weight: 700;
+    word-wrap: break-word;
+  }
+</style>
+</head>
+<body>
+    <div class="team-text"></div>
+
+<div id="team-scroll-container">
+  <div class="team-section">
+    <div class="team-member" style="background-image: url('rorie.jpeg'); margin-left: 45px;" data-title="Rorie">
+      <div class="member-title"></div>
+      <div class="overlay">
+        <div style="color: #ffffff; position: absolute; bottom: 90px; left: 50%; transform: translateX(-50%);">Rorie Kyne "Ro" Micabalo</div>
+        <div style="color: #ffffff; position: absolute; bottom: 70px; left: 50%; transform: translateX(-50%); font-style: italic;">Project Manager</div>
+      </div>
+    </div>
+    <div class="team-member" style="background-image: url('balacuit.png');" data-title="Balacuit">
+      <div class="member-title"></div>
+      <div class="overlay">
+        <div style="color: #ffffff; position: absolute; bottom: 90px; left: 50%; transform: translateX(-50%);">Juhan Kerr "Rio" Balacuit</div>
+        <div style="color: #ffffff; position: absolute; bottom: 70px; left: 50%; transform: translateX(-50%); font-style: italic;">Project Lead</div>
+      </div>
+    </div>
+    <div class="team-member" style="background-image: url('klent.png');" data-title="Klent">
+      <div class="member-title"></div>
+      <div class="overlay">
+        <div style="color: #ffffff; position: absolute; bottom: 90px; left: 50%; transform: translateX(-50%); white-space: nowrap;">Klent Evance "Albert" Abarquez</div>
+        <div style="color: #ffffff; position: absolute; bottom: 70px; left: 50%; transform: translateX(-50%); font-style: italic;">Asst. Project Lead</div>
+      </div>
+    </div>
+    <div class="team-member" style="background-image: url('palamine.jpg');" data-title="Palamine">
+      <div class="member-title"></div>
+      <div class="overlay">
+        <div style="color: #ffffff; position: absolute; bottom: 90px; left: 50%; transform: translateX(-50%); white-space: nowrap;">Dorothy Joy "Dort" Palamine</div>
+        <div style="color: #ffffff; position: absolute; bottom: 70px; left: 50%; transform: translateX(-50%); font-style: italic;">UI/UX Developer</div>
+      </div>
+    </div>
+    <div class="team-member" style="background-image: url('doniel.jpeg');" data-title="Doniel">
+      <div class="member-title"></div>
+      <div class="overlay">
+        <div style="color: #ffffff; position: absolute; bottom: 90px; left: 50%; transform: translateX(-50%); white-space: nowrap;">Doniel Eunson "Donyelisli" Ko</div>
+        <div style="color: #ffffff; position: absolute; bottom: 70px; left: 50%; transform: translateX(-50%); font-style: italic;">Back-End Developer</div>
+      </div>
+    </div>
+    <div class="team-member" style="background-image: url('bucol.png');" data-title="Bucol">
+      <div class="member-title"></div>
+      <div class="overlay">
+        <div style="color: #ffffff; position: absolute; bottom: 90px; left: 50%; transform: translateX(-50%);">Zuriel "Zur" Bucol</div>
+        <div style="color: #ffffff; position: absolute; bottom: 70px; left: 50%; transform: translateX(-50%); font-style: italic;">Program Associate</div>
+      </div>
+    </div>
+    <div class="team-member" style="background-image: url('labor.jpg');" data-title="Labor">
+      <div class="member-title"></div>
+      <div class="overlay">
+        <div style="color: #ffffff; position: absolute; bottom: 90px; left: 50%; transform: translateX(-50%);">Andreah "Dea" Labor</div>
+        <div style="color: #ffffff; position: absolute; bottom: 70px; left: 50%; transform: translateX(-50%); font-style: italic;">UI/UX Developer</div>
+      </div>
+    </div>
+    <div class="team-member" style="background-image: url('enao.png');" data-title="Enao">
+      <div class="member-title"></div>
+      <div class="overlay">
+        <div style="color: #ffffff; position: absolute; bottom: 90px; left: 50%; transform: translateX(-50%);">Nestor "Thirdy" Enao</div>
+        <div style="color: #ffffff; position: absolute; bottom: 70px; left: 50%; transform: translateX(-50%); font-style: italic;">UI/UX Developer</div>
+      </div>
+    </div>
+    <div class="team-member" style="background-image: url('george.png');" data-title="George">
+      <div class="member-title"></div>
+      <div class="overlay">
+        <div style="color: #ffffff; position: absolute; bottom: 90px; left: 50%; transform: translateX(-50%);">George "Chiong" Chiong</div>
+        <div style="color: #ffffff; position: absolute; bottom: 70px; left: 50%; transform: translateX(-50%); font-style: italic;">Program Associate</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  
+<div style="width: 100px; height: 100px; left: -6898px; top: -2868px; position: absolute; border: 1px black solid"></div>
+<div style="width: 500.55px; height: 62.61px; left: 470.22px; top: 153px; position: absolute; text-align: center; color: #000728; font-size: 30px; font-weight: 700; word-wrap: break-word">Meet the Blu.AI Team.</div>
+<div style="left: 187px; top: 77px; position: absolute; color: rgb(0, 0, 0); font-size: 22px; font-weight: 600;">BLU.AI</div>
+<a href="platform1.html"><div style="left: 493px; top: 79px; position: absolute; color: #000728; font-size: 16px; ">Platform</div></a>
+<a href="services2.html"><div style="left: 630px; top: 79px; position: absolute; color: #000728; font-size: 16px; ">Services</div></a>
+<div style="left: 770px; top: 79px; position: absolute; color: #000728; font-size: 16px;">Team</div>
+<a href="homelogin.html"><img style="width: 59px; height: 69px; left: 113px; top: 55px; position: absolute" src="Blu.png" /></a>
+<a href="contacts4.html"><div style="left: 900px; top: 79px; position: absolute; color: #000728; font-size: 16px;">Contacts</div></a>
+<div style="width: 931.94px; height: 17.50px; left: 254.06px; top: 695px; position: absolute; text-align: center; color: #0B1A5C; font-size: 15px;">A group of Kagayanon senior high school researchers</div>
+<div style="left: 1732px; top: 77px; position: absolute; color: rgb(0, 0, 0); font-size: 22px;"></div>
+<img style="width: 158px; height: 124px; left: 263px; top: 780px; position: absolute" src="Blu2.png" />
+<div style="width: 134px; height: 110px; left: 571px; top: 800px; position: absolute">
+  <div style="width: 134px; height: 40px; left: 0px; top: 0px; position: absolute; color: black; font-size: 20px; font-weight: 600; word-wrap: break-word">Who we are </div>
+  <div style="width: 87px; height: 17px; left: 0px; top: 39px; position: absolute; color: #666666; font-size: 14px; font-weight: 500; word-wrap: break-word">Team</div>
+</div>
+<div style="width: 140px; height: 87px; left: 810px; top: 800px; position: absolute">
+    <div style="width: 134px; height: 40px; left: 0px; top: 0px; position: absolute; color: black; font-size: 20px; font-weight: 600; word-wrap: break-word">Socials</div>
+    <a href="https://www.facebook.com/bluai.co/"><div style="width: 140px; height: 17px; left: 0px; top: 39px; position: absolute; color: #505050; font-size: 14px; font-weight: 500; word-wrap: break-word">Facebook</div></a>
+    <a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.linkedin.com%2Fgroups%2F14437349%2F%3Ffbclid%3DIwZXh0bgNhZW0CMTAAAR3aYqeoCzmTrPo-l_O_EmG9mUk5OhmGszvMGf_4wU2aVXe43dvCBcOhm1Q_aem_AQztpiG_-qmNoxnZvfrdSXoIqZ6dgXGTu9IkUlnsdZxfeB67uR7laPp8wGncDleyYEsLp6YorWK0rs3BUx6UbrH8&h=AT1WFPzeK-O5bZO9QxhyzLeDnzXtNAvxoWyt7jZtAymhW9ylMNWIAYcHBCjNz9fAYDYJuyqVgozQJWKhDa1NKVwvUDAJSiD_jWUu-FR22NzO01YIMk49nLY19-dq0ESxTgeysQ"><div style="width: 114px; height: 19px; left: 0px; top: 68px; position: absolute; color: #505050; font-size: 14px; font-weight: 500; word-wrap: break-word">LinkedIn</div></a>
+</div>
+
+    <section>
+        <h1 class="animate"></h1>
+    </section>
+
+    <script src="Team-2.js">
+        
+    </script>
+
+
+</body>
+
+</html>

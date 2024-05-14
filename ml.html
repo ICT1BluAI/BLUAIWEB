@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blu Barehouse Calculator</title>
+    <link rel="stylesheet" type="text/css" href="ml.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body>
+    <a href="homepage.html"><img style="width: 59px; height: 69px; left: 70px; top: 35px; position: absolute" src="Blu.png" /></a>
+    <a href="homepage.html"><div style="left: 143px; top: 57px; position: absolute; color: black; font-size: 22px;  font-weight: 300; word-wrap: break-word">BLU.AI</div></a>
+    <div class="navbar" role="banner">
+        <div class="nav-container">
+            <div class="brand">
+            </div>
+            <div class="menu-button"></div>
+            <nav class="nav-menu">
+                <a href="/works" class="nav-link">Works</a>
+                <a href="/services" class="nav-link">Services</a>
+                <a href="/about" class="nav-link">About</a>
+            </nav>
+        </div>
+    </div>
+
+    <h1>Bare House Calculator</h1>
+    <form action="/" method="post" onsubmit="calculate(event)">
+        <label for="budget">Budget:</label>
+        <input type="number" id="budget" name="budget" step="0.01" required><br><br>
+        <label for="num_floors">Number of Floors:</label>
+        <input type="number" id="num_floors" name="num_floors" min="1" max="3" required><br><br>
+        <div id="floor_details">
+        </div>
+        <button type="button" onclick="addFloor()">Add Floor</button><br><br>
+        <button type="submit">Calculate</button>
+    </form>
+
+    <div class="result" id="resultSection" style="display: none;">
+    </div>
+
+    <script>
+        function addFloor() {
+            var numFloors = parseInt(document.getElementById("num_floors").value);
+            var floorDiv = document.getElementById("floor_details");
+    
+            var floorDetails = "";
+            for (var i = 1; i <= numFloors; i++) {
+                var floorNum = i;
+                floorDetails += `
+                    <h3>Floor ${floorNum} Details</h3>
+                    <label for="floor_area_${floorNum}">Floor area (sqm):</label>
+                    <input type="number" id="floor_area_${floorNum}" name="floor_area_${floorNum}" step="0.01" required><br><br>
+                    <label for="num_doors_${floorNum}">Number of doors:</label>
+                    <input type="number" id="num_doors_${floorNum}" name="num_doors_${floorNum}" required><br><br>
+                    <label for="num_windows_${floorNum}">Number of windows:</label>
+                    <input type="number" id="num_windows_${floorNum}" name="num_windows_${floorNum}" required><br><br>
+                `;
+            }
+    
+            if (numFloors > 0) {
+                floorDetails += `
+                    <label for="roof_area">Roof area (sqm):</label>
+                    <input type="number" id="roof_area" name="roof_area" step="0.01" required><br><br>
+                `;
+            }
+    
+            floorDiv.innerHTML = floorDetails;
+        }
+    
+        function calculate(event) {
+            event.preventDefault(); 
+            var budget = parseFloat(document.getElementById("budget").value);
+            var numFloors = parseInt(document.getElementById("num_floors").value);
+            var totalCost = 0;
+    
+            for (var i = 1; i <= numFloors; i++) {
+                var floorArea = parseFloat(document.getElementById(`floor_area_${i}`).value);
+                var numDoors = parseInt(document.getElementById(`num_doors_${i}`).value);
+                var numWindows = parseInt(document.getElementById(`num_windows_${i}`).value);
+                totalCost += floorArea * 8000 + numDoors * 3860 + numWindows * 5450;
+            }
+    
+            if (numFloors > 0) {
+                var roofArea = parseFloat(document.getElementById("roof_area").value);
+                totalCost += roofArea * 8000;
+            }
+    
+            var resultSection = document.getElementById("resultSection");
+            resultSection.style.display = "block";
+    
+            var totalOutput = "<h2>Total:</h2><p>Total Cost: " + numberWithCommas(totalCost.toFixed(2)) + "</p>";
+    
+            if (totalCost > budget) {
+                var additionalAmountNeeded = totalCost - budget;
+                resultSection.innerHTML = totalOutput + "<p>You need " + numberWithCommas(additionalAmountNeeded.toFixed(2)) + " more to match the total.</p>";
+            } else {
+                resultSection.innerHTML = totalOutput + "<p>The total is within the budget.</p>";
+            }
+        }
+    
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+    
+        function calculateWithML(event) {
+            event.preventDefault(); 
+            var budget = parseFloat(document.getElementById("budget").value);
+            var numFloors = parseInt(document.getElementById("num_floors").value);
+            var total_floor_area = 0;
+            var num_doors = 0;
+            var num_windows = 0;
+    
+            for (var i = 1; i <= numFloors; i++) {
+                total_floor_area += parseFloat(document.getElementById(`floor_area_${i}`).value);
+                num_doors += parseInt(document.getElementById(`num_doors_${i}`).value);
+                num_windows += parseInt(document.getElementById(`num_windows_${i}`).value);
+            }
+    
+            var data = {
+                budget: budget,
+                num_floors: numFloors,
+                total_floor_area: total_floor_area,
+                num_doors: num_doors,
+                num_windows: num_windows
+            };
+    
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(prediction => {
+                var resultSection = document.getElementById("resultSection");
+                resultSection.style.display = "block"; 
+                if (prediction.predicted_price <= budget) {
+                    resultSection.innerHTML = `<h2>Prediction:</h2><p>The predicted price is within the budget: ${prediction.predicted_price.toFixed(2)}</p>`;
+                } else {
+                    resultSection.innerHTML = `<h2>Prediction:</h2><p>The predicted price exceeds the budget: ${prediction.predicted_price.toFixed(2)}</p>`;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 232 205" class="background">
+        <g style="mix-blend-mode:overlay">
+            <defs>
+                <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:#8f71eb;" />
+                    <stop offset="100%" style="stop-color:#07006b;" />
+                </linearGradient>
+            </defs>
+            <path d="M81.2325 121.052C64.7758 121.405 58.1109 100.03 71.584 90.1079L174.126 14.5887C183.458 7.71565 196.461 11.8978 199.883 22.8729L222.591 95.6986C226.013 106.674 217.881 118.113 206.482 118.358L81.2325 121.052Z" fill="url(#gradient)"/>
+            <path d="M72.8502 144.482C56.3909 144.733 49.8488 123.323 63.3785 113.485L166.35 38.6072C175.723 31.7914 188.706 36.0526 192.065 47.0478L214.362 120.016C217.722 131.011 209.521 142.399 198.119 142.573L72.8502 144.482Z" fill="url(#gradient)"/>
+        </g>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 232 205" class="background">
+        <g style="mix-blend-mode:overlay">
+            <defs>
+                <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:#8f71eb;" />
+                    <stop offset="100%" style="stop-color:#07006b;" />
+                </linearGradient>
+            </defs>
+            <path d="M81.2325 121.052C64.7758 121.405 58.1109 100.03 71.584 90.1079L174.126 14.5887C183.458 7.71565 196.461 11.8978 199.883 22.8729L222.591 95.6986C226.013 106.674 217.881 118.113 206.482 118.358L81.2325 121.052Z" fill="url(#gradient)"/>
+            <path d="M72.8502 144.482C56.3909 144.733 49.8488 123.323 63.3785 113.485L166.35 38.6072C175.723 31.7914 188.706 36.0526 192.065 47.0478L214.362 120.016C217.722 131.011 209.521 142.399 198.119 142.573L72.8502 144.482Z" fill="url(#gradient)"/>
+        </g>
+        </svg>
+        <svg id="polygon2" xmlns="http://www.w3.org/2000/svg" width="232" height="205" viewBox="0 0 232 205" fill="none">
+            <g style="mix-blend-mode:overlay">
+                <path d="M81.2325 121.052C64.7758 121.405 58.1109 100.03 71.584 90.1079L174.126 14.5887C183.458 7.71565 196.461 11.8978 199.883 22.8729L222.591 95.6986C226.013 106.674 217.881 118.113 206.482 118.358L81.2325 121.052Z" fill="#07006b"/>
+            </g>
+            <path d="M72.8502 144.482C56.3909 144.733 49.8488 123.323 63.3785 113.485L166.35 38.6072C175.723 31.7914 188.706 36.0526 192.065 47.0478L214.362 120.016C217.722 131.011 209.521 142.399 198.119 142.573L72.8502 144.482Z" fill="#8f71eb"/>
+        </svg>
+        <svg id="polygon2" xmlns="http://www.w3.org/2000/svg" width="232" height="205" viewBox="0 0 232 205" fill="none">
+            <g style="mix-blend-mode:overlay">
+                <path d="M81.2325 121.052C64.7758 121.405 58.1109 100.03 71.584 90.1079L174.126 14.5887C183.458 7.71565 196.461 11.8978 199.883 22.8729L222.591 95.6986C226.013 106.674 217.881 118.113 206.482 118.358L81.2325 121.052Z" fill="#07006b"/>
+            </g>
+            <path d="M72.8502 144.482C56.3909 144.733 49.8488 123.323 63.3785 113.485L166.35 38.6072C175.723 31.7914 188.706 36.0526 192.065 47.0478L214.362 120.016C217.722 131.011 209.521 142.399 198.119 142.573L72.8502 144.482Z" fill="#8f71eb"/>
+        </svg>
+        <svg id="polygon3" xmlns="http://www.w3.org/2000/svg" width="232" height="205" viewBox="0 0 232 205" fill="none">
+            <g style="mix-blend-mode:overlay">
+                <path d="M81.2325 121.052C64.7758 121.405 58.1109 100.03 71.584 90.1079L174.126 14.5887C183.458 7.71565 196.461 11.8978 199.883 22.8729L222.591 95.6986C226.013 106.674 217.881 118.113 206.482 118.358L81.2325 121.052Z" fill="#07006b"/>
+            </g>
+            <path d="M72.8502 144.482C56.3909 144.733 49.8488 123.323 63.3785 113.485L166.35 38.6072C175.723 31.7914 188.706 36.0526 192.065 47.0478L214.362 120.016C217.722 131.011 209.521 142.399 198.119 142.573L72.8502 144.482Z" fill="#8f71eb"/>
+        </svg>
+        <svg id="polygon4" xmlns="http://www.w3.org/2000/svg" width="232" height="205" viewBox="0 0 232 205" fill="none">
+            <g style="mix-blend-mode:overlay">
+                <path d="M81.2325 121.052C64.7758 121.405 58.1109 100.03 71.584 90.1079L174.126 14.5887C183.458 7.71565 196.461 11.8978 199.883 22.8729L222.591 95.6986C226.013 106.674 217.881 118.113 206.482 118.358L81.2325 121.052Z" fill="#07006b"/>
+            </g>
+            <path d="M72.8502 144.482C56.3909 144.733 49.8488 123.323 63.3785 113.485L166.35 38.6072C175.723 31.7914 188.706 36.0526 192.065 47.0478L214.362 120.016C217.722 131.011 209.521 142.399 198.119 142.573L72.8502 144.482Z" fill="#8f71eb"/>
+        </svg>
+
+</html>

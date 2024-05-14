@@ -1,0 +1,94 @@
+.mission-heading {
+    color: white;
+    font-size: 24px;
+    font-family: Poppins;
+    font-weight: 700;
+    word-wrap: break-word;
+}
+
+.mission-description {
+    color: white;
+    font-size: 15px;
+    font-family: Poppins;
+    font-weight: 300;
+    word-wrap: break-word;
+}
+
+.commitment {
+    color: #000728;
+    font-size: 20px;
+    font-family: Poppins;
+    font-weight: 300;
+    word-wrap: break-word;
+}
+
+.vision-heading {
+    color: #000728;
+    font-size: 24px;
+    font-family: Poppins;
+    font-weight: 700;
+    word-wrap: break-word;
+}
+
+.vision-description {
+    color: #000728;
+    font-size: 15px;
+    font-family: Poppins;
+    font-weight: 300;
+    word-wrap: break-word;
+}
+
+.blu-ai {
+    color: white;
+    font-size: 22px;
+    font-family: Agrandir;
+    font-weight: 300;
+    word-wrap: break-word;
+}
+
+.platform {
+    color: #000728;
+    font-size: 16px;
+    font-family: Poppins;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.team {
+    color: #000728;
+    font-size: 16px;
+    font-family: Poppins;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.contact {
+    color: #000728;
+    font-size: 16px;
+    font-family: Poppins;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.platform-heading {
+    color: #000728;
+    font-size: 40px;
+    font-family: Poppins;
+    font-weight: 700;
+    word-wrap: break-word;
+}
+
+.services {
+    color: #000728;
+    font-size: 16px;
+    font-family: Poppins;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+body {
+    background-image: url('loginbg.jpg'); 
+    background-size: 1850px; 
+    overflow-x: hidden; 
+}
+

@@ -1,0 +1,75 @@
+.question-text {
+    color: black;
+    font-size: 18px;
+    font-family: Poppins;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.contact-heading {
+    color: #000728;
+    font-size: 70px;
+    font-family: Inter;
+    font-weight: 700;
+    word-wrap: break-word;
+}
+
+.contact-description {
+    color: #000728;
+    font-size: 24px;
+    font-family: Inter;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.email-contact {
+    color: #000728;
+    font-size: 24px;
+    font-family: Inter;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.phone-contact {
+    color: #000728;
+    font-size: 24px;
+    font-family: Inter;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.blu-ai-text {
+    color: #080028;
+    font-size: 22px;
+    font-family: Agrandir;
+    font-weight: 300;
+    word-wrap: break-word;
+}
+
+.platform-services-text {
+    color: #080028;
+    font-size: 16px;
+    font-family: Poppins;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.team-contact-text {
+    color: #C2CEFF;
+    font-size: 16px;
+    font-family: Poppins;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+body {
+    overflow-x: hidden; 
+    font-family: 'Poppins-Bold', sans-serif;
+}
+
+@font-face {
+    font-family: 'Poppins-Bold';
+    src: url('website/Poppins-Bold.woff2') format('woff2'),
+         url('website/Poppins-Bold.woff') format('woff');
+        
+}

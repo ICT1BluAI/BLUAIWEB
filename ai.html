@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AskAI</title>
+    <style>
+        body {
+            background-color: #000728;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .left-box {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 250px;
+            background-image: linear-gradient(rgba(5, 0, 0, 0.5), rgba(5, 0, 0, 0.5)), url('Building.png'); 
+            background-size: cover;
+            background-position: center center; 
+        }
+
+
+
+        .content-wrapper {
+            margin-left: 270px; 
+            margin-top: 20px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: calc(100vh - 20px); 
+        }
+        .top-left-content {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+        }
+        .top-left-content img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .chat-container {
+            color: #fff; 
+        }
+        .chat-input {
+            display: flex;
+            margin-top: 20px;
+        }
+        .chat-input input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            font-size: 16px;
+            color: #050000; 
+        }
+        .chat-input button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="left-box"></div>
+    <div class="content-wrapper">
+        <div class="top-left-content">
+            <img src="Blu.png" alt="Image">
+            <h2>Blu.AI</h2>
+        </div>
+        <div id="chat-container" class="chat-container">
+        </div>
+        <!-- Chat input area -->
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type your message here...">
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
